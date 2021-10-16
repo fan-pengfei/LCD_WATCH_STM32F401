@@ -133,8 +133,8 @@ extern USBD_HandleTypeDef hUsbDeviceFS;
 
 static int8_t CDC_Init_FS(void);
 static int8_t CDC_DeInit_FS(void);
-static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length);
-static int8_t CDC_Receive_FS(uint8_t* pbuf, uint32_t *Len);
+static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length);
+static int8_t CDC_Receive_FS(uint8_t *pbuf, uint32_t *Len);
 static int8_t CDC_TransmitCplt_FS(uint8_t *pbuf, uint32_t *Len, uint8_t epnum);
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_DECLARATION */
@@ -146,13 +146,12 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *pbuf, uint32_t *Len, uint8_t epnum);
   */
 
 USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
-{
-  CDC_Init_FS,
-  CDC_DeInit_FS,
-  CDC_Control_FS,
-  CDC_Receive_FS,
-  CDC_TransmitCplt_FS
-};
+    {
+        CDC_Init_FS,
+        CDC_DeInit_FS,
+        CDC_Control_FS,
+        CDC_Receive_FS,
+        CDC_TransmitCplt_FS};
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -161,12 +160,12 @@ USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
   */
 static int8_t CDC_Init_FS(void)
 {
-  /* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN 3 */
     /* Set Application Buffers */
     USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
     USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
     return (USBD_OK);
-  /* USER CODE END 3 */
+    /* USER CODE END 3 */
 }
 
 /**
@@ -175,9 +174,9 @@ static int8_t CDC_Init_FS(void)
   */
 static int8_t CDC_DeInit_FS(void)
 {
-  /* USER CODE BEGIN 4 */
+    /* USER CODE BEGIN 4 */
     return (USBD_OK);
-  /* USER CODE END 4 */
+    /* USER CODE END 4 */
 }
 
 /**
@@ -187,9 +186,9 @@ static int8_t CDC_DeInit_FS(void)
   * @param  length: Number of data to be sent (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
+static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length)
 {
-  /* USER CODE BEGIN 5 */
+    /* USER CODE BEGIN 5 */
     switch (cmd)
     {
     case CDC_SEND_ENCAPSULATED_COMMAND:
@@ -250,7 +249,7 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
     }
 
     return (USBD_OK);
-  /* USER CODE END 5 */
+    /* USER CODE END 5 */
 }
 
 /**
@@ -268,12 +267,12 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
+static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 {
-  /* USER CODE BEGIN 6 */
+    /* USER CODE BEGIN 6 */
     temp.rxlen = temp.rxlen + (*Len);
 
-    if (temp.rxlen < APP_RX_DATA_SIZE && UserRxBufferFS[temp.rxlen - 2] != 0x0d && UserRxBufferFS[temp.rxlen - 1] != 0x0a) //***发�?�时每�?�发??�必须以\r\n结尾***
+    if (temp.rxlen < APP_RX_DATA_SIZE && UserRxBufferFS[temp.rxlen - 2] != 0x0d && UserRxBufferFS[temp.rxlen - 1] != 0x0a) //***发�?�时每�?�发??�必须以\r\n结尾***
     {
         //---继续接收---------------
         USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS + temp.rxlen);
@@ -285,7 +284,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
         UserRxBufferFS[temp.rxlen] = 0;
     }
     return (USBD_OK);
-  /* USER CODE END 6 */
+    /* USER CODE END 6 */
 }
 
 /**
@@ -299,10 +298,10 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   * @param  Len: Number of data to be sent (in bytes)
   * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
   */
-uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
+uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
 {
-  uint8_t result = USBD_OK;
-  /* USER CODE BEGIN 7 */
+    uint8_t result = USBD_OK;
+    /* USER CODE BEGIN 7 */
     USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef *)hUsbDeviceFS.pClassData;
     if (hcdc->TxState != 0)
     {
@@ -310,8 +309,8 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
     }
     USBD_CDC_SetTxBuffer(&hUsbDeviceFS, Buf, Len);
     result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
-  /* USER CODE END 7 */
-  return result;
+    /* USER CODE END 7 */
+    return result;
 }
 
 /**
@@ -328,13 +327,13 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
   */
 static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 {
-  uint8_t result = USBD_OK;
-  /* USER CODE BEGIN 13 */
+    uint8_t result = USBD_OK;
+    /* USER CODE BEGIN 13 */
     UNUSED(Buf);
     UNUSED(Len);
     UNUSED(epnum);
-  /* USER CODE END 13 */
-  return result;
+    /* USER CODE END 13 */
+    return result;
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */

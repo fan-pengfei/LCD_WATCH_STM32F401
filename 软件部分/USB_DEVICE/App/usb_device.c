@@ -55,9 +55,9 @@ void VCP_Status(void)
     if (hUsbDeviceFS.dev_state != old_status)
     {
         // if (hUsbDeviceFS.dev_state == USBD_STATE_CONFIGURED)
-        //     printf("连接成功\r\n");
+        //     printf("锟斤拷锟接成癸拷\r\n");
         // else if (hUsbDeviceFS.dev_state == USBD_STATE_SUSPENDED)
-        //     printf("断开成功\r\n");
+        //     printf("锟较匡拷锟缴癸拷\r\n");
         // old_status = hUsbDeviceFS.dev_state;
     }
 }
@@ -77,31 +77,31 @@ void VCP_Status(void)
   */
 void MX_USB_DEVICE_Init(void)
 {
-  /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
+    /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
 
-  /* USER CODE END USB_DEVICE_Init_PreTreatment */
+    /* USER CODE END USB_DEVICE_Init_PreTreatment */
 
-  /* Init Device Library, add supported class and start the library. */
-  if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
-  {
-    Error_Handler();
-  }
-  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC) != USBD_OK)
-  {
-    Error_Handler();
-  }
-  if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
-  {
-    Error_Handler();
-  }
-  if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
-  {
-    Error_Handler();
-  }
+    /* Init Device Library, add supported class and start the library. */
+    if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
+    {
+        Error_Handler();
+    }
+    if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC) != USBD_OK)
+    {
+        Error_Handler();
+    }
+    if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
+    {
+        Error_Handler();
+    }
+    if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
+    {
+        Error_Handler();
+    }
 
-  /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
+    /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
 
-  /* USER CODE END USB_DEVICE_Init_PostTreatment */
+    /* USER CODE END USB_DEVICE_Init_PostTreatment */
 }
 
 /**

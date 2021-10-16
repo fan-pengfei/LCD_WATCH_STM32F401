@@ -52,7 +52,7 @@
 #define APP_RX_DATA_SIZE  1000
 #define APP_TX_DATA_SIZE  1000
 /* USER CODE BEGIN EXPORTED_DEFINES */
-    void usb_printf(const char *format, ...);
+
 /* USER CODE END EXPORTED_DEFINES */
 
 /**
@@ -65,7 +65,7 @@
   */
 
 /* USER CODE BEGIN EXPORTED_TYPES */
-
+void usb_printf(const char *format, ...);
 /* USER CODE END EXPORTED_TYPES */
 
 /**

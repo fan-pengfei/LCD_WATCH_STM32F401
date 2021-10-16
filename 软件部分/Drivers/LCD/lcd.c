@@ -21,6 +21,19 @@ void LCD_Fill(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16
         }
     }
 }
+void my_LCD_Fill(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16_t *color_p)
+{
+    uint16_t i, j;
+    LCD_Address_Set(xsta, ysta, xend , yend ); //设置显示范围
+    for (i = ysta; i <= yend; i++)
+    {
+        for (j = xsta; j <= xend; j++)
+        {
+            LCD_WR_DATA(*color_p);
+            color_p++;
+        }
+    }
+}
 
 /******************************************************************************
       函数说明：在指定位置画点

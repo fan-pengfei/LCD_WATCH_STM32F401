@@ -12,7 +12,15 @@
                 "${workspaceFolder}/Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
                 "${workspaceFolder}/USB_DEVICE/Target",
                 "${workspaceFolder}/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc",
-                "${workspaceFolder}/Drivers/LCD"
+                "${workspaceFolder}/Drivers/LCD",
+                "${workspaceFolder}/Drivers/LVGL/lvgl",
+                "${workspaceFolder}/Drivers/LVGL/lvgl_driver",
+                "${workspaceFolder}/Drivers/LVGL/lvgl_app/src/lv_ex_widgets",
+                "${workspaceFolder}/Drivers/LVGL",
+                "${workspaceFolder}/Drivers/LVGL/lvgl_app/src/lv_demo_widgets",
+                "${workspaceFolder}/Drivers/LVGL/lvgl_app",
+                "${workspaceFolder}/Drivers/LVGL/lvgl/src",
+                "C:/Users/xiaofei/OneDrive/桌面/HWatch/User/Gui/lvgl/master/src/lv_widgets"
             ],
             "defines": [
                 "_DEBUG",
